@@ -15,10 +15,10 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     llvm15.0-devel clang15.0-devel lld15.0-devel \
     gcc-c++ gcc-plugin-devel libstdc++-devel \
     glibc-core glibc-devel glibc-devel-static glib2-devel \
-    flex bison lcov gcovr perl-podlators \
-    python3-dev python3-module-setuptools \
+    perl ruby \
+    python3-dev python3-module-setuptools python3-module-pip \
     make automake cmake ninja-build \
-    strace nano
+    strace nano bash-completion
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -29,8 +29,6 @@ RUN git config --system user.email "you@example.com" && \
 
 RUN echo 'WHEEL_USERS ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-CMD /bin/bash
-
 RUN groupadd -g 1000 user && \
     useradd -l -m -u 1000 -g user -G wheel -s /bin/bash user
 
@@ -40,3 +38,5 @@ RUN echo 'WHEEL_USERS ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 #USER user
 WORKDIR /host
+
+CMD /bin/bash
