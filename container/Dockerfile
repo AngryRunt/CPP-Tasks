@@ -36,7 +36,7 @@ RUN echo 'WHEEL_USERS ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Do target specific stuff (e.g. install build deps)
 
-#USER user
+USER user
 WORKDIR /host
 
 CMD /bin/bash
